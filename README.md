@@ -14,6 +14,6 @@ For more details, see the full text of the license in the file LICENSE.
 GitHub Pages
 ============
 
-This repository is a gh-pages branch of my Pistachio examples project.
+This is a gh-pages branch of my Pistachio examples project.
 
 https://github.com/joeldalley/pistachio
