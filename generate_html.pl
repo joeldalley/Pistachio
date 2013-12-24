@@ -8,12 +8,10 @@ use warnings;
 use File::Basename;
 use File::DirWalk;
 use File::Slurp;
-
-use Pistachio::Css::Github::Common 'code_div';
 use Pistachio;
 
 # A local Perl project.
-use constant SOMA_LIB => '/home/joel/projects/Soma/lib';
+use constant SOMA_LIB => '/home/joel/projects/soma/lib';
 
 # Assert existence of source code dirs.
 -d SOMA_LIB or die 'Missing Soma lib dir'; # local project
@@ -30,6 +28,10 @@ my %config = (
 # Pistachio HTML handler, for snippet().
 my $handler = Pistachio::html_handler('Perl5', 'Github');
 
+# "Generated @" comment
+my $generated = sprintf '<!-- Generated @ %s, using Pistachio version %s -->',
+                        my $time = localtime, $Pistachio::VERSION;
+
 # Generate HTML output files.
 while (my ($name, $cfg) = each %config) {
     my ($path, $for_list) = @$cfg;
@@ -40,17 +42,22 @@ while (my ($name, $cfg) = each %config) {
         my $ref = read_file $path, scalar_ref => 1 or die $!;
         my $snip = $handler->snippet($ref);
         my $out = to_html_output_path($name, $path);
-        write_file $out, $snip or die $!;
+        write_file $out, join "\n", $snip, $generated or die $!;
         push @files, $out;
     }
 
     # An index file for this example.
-    my $a_spec = '<a style="font-size:15px;display:inline-block;margin-bottom:4px" href="%s">%s</a>';
+    my $a_spec = '<a style="font-size:16px;display:inline-block;margin-bottom:6px" href="%s">%s</a>';
     my $links = join '<br/>', map sprintf($a_spec, $_, $_), map basename($_), @files;
 
-    my $html_spec = '<html><head><title>Pistachio Example :: %s</title></head>'
-             .   '<body style="%s"><h1>Pistachio Example :: %s</h1>%s</body></html>';
-    my $index_html = sprintf $html_spec, $name, &code_div, $name, $links;
+    my $html_spec = "<html><head><title>Pistachio Example :: %s</title></head>\n"
+                  . "  <body style=\"font-family:Consolas,'Liberation Mono',Courier,monospace\">\n"
+                  . "    <h1>Pistachio Example :: %s</h1>\n"
+                  . "    <div style=\"white-space:pre\">%s</div>\n"
+                  . "    %s\n"
+                  . "  </body>\n"
+                  . "</html>\n";
+    my $index_html = sprintf $html_spec, $name, $name, $links, $generated;
 
     my $index_file = to_html_output_path($name, 'index');
     write_file $index_file, $index_html or die $!;
@@ -79,7 +86,7 @@ sub inc_having {
 sub to_html_output_path {
     my ($name, $path) = @_;
  
-    my $rel_dir = "../github-pages/pistachio/$name";
+    my $rel_dir = "../gh-pages/pistachio/$name";
     -e $rel_dir or mkdir $rel_dir or die $!;
 
     # flatten /path/to/files into path-to-files
