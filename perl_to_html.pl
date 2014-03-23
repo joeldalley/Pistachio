@@ -11,7 +11,7 @@ use File::Slurp;
 use Pistachio;
 
 # A local Perl project.
-use constant SOMA_LIB => '/home/joel/projects/soma/lib';
+use constant SOMA_LIB => '/Users/joel/Code/projects/soma/lib';
 
 # Assert existence of source code dirs.
 -d SOMA_LIB or die 'Missing Soma lib dir'; # local project
