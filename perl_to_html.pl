@@ -10,17 +10,12 @@ use File::DirWalk;
 use File::Slurp;
 use Pistachio;
 
-# A local Perl project.
-use constant SOMA_LIB => '/Users/joel/Code/projects/soma/lib';
-
 # Assert existence of source code dirs.
--d SOMA_LIB or die 'Missing Soma lib dir'; # local project
-my $moo_path = inc_having('Moo');          # from CPAN
-my $pst_path = inc_having('Pistachio');    # from CPAN
+my $moo_path = inc_having('Moo');       # from CPAN
+my $pst_path = inc_having('Pistachio'); # from CPAN
 
 # Examples to generate HTML for.
 my %config = (
-    Soma      => [SOMA_LIB, []],
     Moo       => ["$moo_path/Moo", ["$moo_path/Moo.pm"]],
     Pistachio => ["$pst_path/Pistachio", ["$pst_path/Pistachio.pm"]]
     );

@@ -24,7 +24,7 @@ my $lang = Pistachio::Language->new('JSON',
         my $tokens = std_parse 'json_text', $_[0];
         [map Pistachio::Token->new($_->type, $_->value), @$tokens];
     },
-    css => sub {
+    type_to_style => sub {
         my %type_to_style = (
             JsonNum           => 'color:#008080',
             JsonNull          => 'color:#000',
@@ -49,7 +49,7 @@ my $generated = sprintf '<!-- Generated @ %s, using Pistachio version %s -->',
 # Generate HTML output files.
 my @files;
 my $name = 'JSON';
-my @json_corpus = glob '/Users/joel/Code/JBD/JSON/bin/json_corpus/*.json';
+my @json_corpus = glob '/Users/joel/Code/lib-JBD/JSON/bin/json_corpus/*.json';
 
 for my $path (@json_corpus) {
     # Pistachio-generated files.
