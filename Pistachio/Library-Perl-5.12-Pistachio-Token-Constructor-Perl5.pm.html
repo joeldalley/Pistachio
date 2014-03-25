@@ -8,18 +8,18 @@
 </span><span>
 </span><span style="color:#333;font-weight:bold">use</span><span> </span><span style="color:#333">strict</span><span style="color:#333">;</span><span>
 </span><span style="color:#333;font-weight:bold">use</span><span> </span><span style="color:#333">warnings</span><span style="color:#333">;</span><span>
-</span><span style="color:#333;font-weight:bold">our</span><span> </span><span style="color:#008080">$VERSION</span><span> </span><span style="color:#333">=</span><span> </span><span style="color:#D14">&#39;0.05&#39;</span><span style="color:#333">;</span><span> </span><span style="color:#999988;font-style:italic"># VERSION</span><span>
+</span><span style="color:#333;font-weight:bold">our</span><span> </span><span style="color:#008080">$VERSION</span><span> </span><span style="color:#333">=</span><span> </span><span style="color:#D14">&#39;0.10&#39;</span><span style="color:#333">;</span><span> </span><span style="color:#999988;font-style:italic"># VERSION</span><span>
 </span><span>
 </span><span style="color:#333;font-weight:bold">use</span><span> </span><span style="color:#333">Pistachio::Keywords::Perl5</span><span> </span><span style="color:#D14">&#39;is_keyword&#39;</span><span style="color:#333">;</span><span>
 </span><span style="color:#333;font-weight:bold">use</span><span> </span><span style="color:#333">Pistachio::Token</span><span style="color:#333">;</span><span>
 </span><span style="color:#333;font-weight:bold">use</span><span> </span><span style="color:#333">PPI::Tokenizer</span><span style="color:#333">;</span><span>
 </span><span>
-</span><span style="color:#333;font-weight:bold">use</span><span> </span><span style="color:#333">JBD::Core::Exporter</span><span style="color:#333">;</span><span>
-</span><span style="color:#333;font-weight:bold">our</span><span> </span><span style="color:#008080">@EXPORT_OK</span><span> </span><span style="color:#333">=</span><span> </span><span style="color:#D14">qw(text_to_tokens)</span><span style="color:#333">;</span><span>
+</span><span style="color:#333;font-weight:bold">use</span><span> </span><span style="color:#333">Exporter</span><span> </span><span style="color:#D14">&#39;import&#39;</span><span style="color:#333">;</span><span>
+</span><span style="color:#333;font-weight:bold">our</span><span> </span><span style="color:#008080">@EXPORT_OK</span><span> </span><span style="color:#333">=</span><span> </span><span style="color:#D14">&#39;text_to_tokens&#39;</span><span style="color:#333">;</span><span>
 </span><span>
 </span><span style="color:#999988;font-style:italic"># @param scalarref    reference to text
 </span><span style="color:#999988;font-style:italic"># @return arrayref    Pistachio::Token array
-</span><span style="color:#333;font-weight:bold">sub</span><span> </span><span style="color:#990000;font-weight:bold">text_to_tokens</span><span style="color:#333">(\$)</span><span> </span><span style="color:#333">{</span><span>
+</span><span style="color:#333;font-weight:bold">sub</span><span> </span><span style="color:#990000;font-weight:bold">text_to_tokens</span><span> </span><span style="color:#333">{</span><span>
 </span><span>    </span><span style="color:#333;font-weight:bold">my</span><span> </span><span style="color:#008080">$ppi</span><span> </span><span style="color:#333">=</span><span> </span><span style="color:#333">PPI::Tokenizer</span><span style="color:#333;font-weight:bold">-&gt;</span><span style="color:#333">new</span><span style="color:#333">(</span><span style="color:#0086B3">shift</span><span style="color:#333">)</span><span style="color:#333">;</span><span>
 </span><span>
     </span><span style="color:#333;font-weight:bold">my</span><span> </span><span style="color:#008080">@tokens</span><span style="color:#333">;</span><span>
@@ -51,7 +51,7 @@ Pistachio::Token::Constructor::Perl5 - provides text_to_tokens(), which turns so
 
 =head1 VERSION
 
-version 0.05
+version 0.10
 
 =head1 SYNPOSIS
 
@@ -81,4 +81,4 @@ the same terms as the Perl 5 programming language system itself.
 </span></div>
 </div>
 <div style="clear:both"></div>
-<!-- Generated @ Sat Mar 22 18:37:59 2014, using Pistachio version 0.05 -->
+<!-- Generated @ Tue Mar 25 07:15:48 2014, using Pistachio version 0.10 -->
